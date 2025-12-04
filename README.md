@@ -1,4 +1,4 @@
-# purple-pay
+# PockieSafe Website
 
 ## Project setup
 ```
