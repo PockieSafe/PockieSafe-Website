@@ -1,42 +1,48 @@
 <template>
     <nav class="navbar">
         <div class="container">
+            <router-link class="nav-link me-5 logo_remove" to="/">
+                <img src="../assets/main-logo.svg" alt="PockieSafe" />
+            </router-link>
 
-           <router-link class="nav-link me-5 logo_remove" to="/"><img
-                        src="../assets/main-logo.svg" alt=""></router-link>
-
-            <button class="hamburger" @click="toggleMenu">
+            <button class="hamburger" @click="toggleMenu" aria-label="Toggle menu">
                 <span :class="{ open: isOpen }"></span>
                 <span :class="{ open: isOpen }"></span>
                 <span :class="{ open: isOpen }"></span>
             </button>
 
             <ul :class="['nav-links', { show: isOpen }]">
-                 <li class="nav-item "  @click="closeMenu">
+                <li class="nav-item" @click="closeMenu">
                     <router-link class="nav-link" to="/stokvel">Stokvel</router-link>
                 </li>
-                <li class="nav-item "  @click="closeMenu">
+                <li class="nav-item" @click="closeMenu">
                     <router-link class="nav-link" to="/flexrand">FlexRand</router-link>
                 </li>
-                <li class="nav-item "  @click="closeMenu">
+                <li class="nav-item" @click="closeMenu">
                     <router-link class="nav-link" to="/security">Security</router-link>
                 </li>
-                <li class="nav-item "  @click="closeMenu">
+                <li class="nav-item" @click="closeMenu">
                     <router-link class="nav-link" to="/faq">FAQs</router-link>
                 </li>
 
-                <div v-if="isOpen" class="mobile-download">
-                    <a href="#" class="download-btn google" @click="closeMenu"><img src="../assets/googleplay.svg" alt="" /></a>
-                    <a href="#" class="download-btn apple" @click="closeMenu"><img src="../assets/appstore.svg" alt="" /></a>
-                </div>
+                <li v-if="isOpen" class="mobile-download">
+                    <a href="#" class="download-btn google" @click="closeMenu">
+                        <img src="../assets/googleplay.svg" alt="Get it on Google Play" />
+                    </a>
+                    <a href="#" class="download-btn apple" @click="closeMenu">
+                        <img src="../assets/appstore.svg" alt="Download on the App Store" />
+                    </a>
+                </li>
             </ul>
 
             <div class="right-btns">
-                <a class="" href="#" role="button"><img src="../assets/appstore.svg" alt="" /> </a>
-                <a class="" href="#" role="button"><img src="../assets/googleplay.svg" alt="" />
+                <a href="#" role="button">
+                    <img src="../assets/appstore.svg" alt="App Store" />
+                </a>
+                <a href="#" role="button">
+                    <img src="../assets/googleplay.svg" alt="Google Play" />
                 </a>
             </div>
-
         </div>
     </nav>
 </template>
@@ -44,9 +50,7 @@
 <script>
 export default {
     data() {
-        return {
-            isOpen: false
-        };
+        return { isOpen: false };
     },
     methods: {
         toggleMenu() {
@@ -54,16 +58,19 @@ export default {
         },
         closeMenu() {
             this.isOpen = false;
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style scoped>
-/* NAV BAR BASE */
-ul{
-    margin-top: 1rem;
+/* RESET */
+ul {
+    margin: 0;
+    padding: 0;
 }
+
+/* NAV BAR BASE */
 .navbar {
     width: 100%;
     background: #fff;
@@ -73,20 +80,18 @@ ul{
     z-index: 1000;
 }
 
+/* IMPORTANT: make container behave on all widths */
 .container {
+    width: 100%;
     max-width: 1240px;
-    margin: auto;
-    padding: 5px;
+    margin: 0 auto;
     display: flex;
+    padding: 8px 0px;
     align-items: center;
     justify-content: space-between;
-}
-
-/* LOGO */
-.logo {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 700;
+    position: relative;
+    /* anchor dropdown */
+    box-sizing: border-box;
 }
 
 /* NAV LINKS */
@@ -94,33 +99,27 @@ ul{
     display: flex;
     gap: 2rem;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links li a {
     text-decoration: none;
     color: #222;
     font-size: 1rem;
-}
-
-.nav-links li a:hover {
-    color: #007bff;
+    white-space: nowrap;
 }
 
 /* RIGHT BUTTONS */
 .right-btns {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
-.download-btn {
-    /* padding: 0.55rem 1.2rem; */
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
-    display: inline-block;
+.right-btns img {
+    height: 36px;
+    /* helps reduce iPad squeeze */
 }
-
 
 /* HAMBURGER */
 .hamburger {
@@ -129,6 +128,7 @@ ul{
     gap: 5px;
     background: none;
     border: none;
+    padding: 8px;
 }
 
 .hamburger span {
@@ -151,7 +151,38 @@ ul{
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* MOBILE STYLING */
+/* =========================
+   ✅ TABLET FIX (iPad range)
+   ========================= */
+@media (max-width: 1100px) {
+    .container {
+        padding: 8px 80px;
+        /* tighter padding */
+    }
+
+    /* remove big bootstrap margin that pushes things */
+    .logo_remove {
+        margin-right: 12px !important;
+    }
+
+    .nav-links {
+        gap: 1.2rem;
+        /* smaller gap fits iPad */
+    }
+
+    .nav-links li a {
+        font-size: 0.95rem;
+    }
+
+    .right-btns img {
+        height: 32px;
+        /* smaller badges on iPad */
+    }
+}
+
+/* ======================
+   MOBILE STYLING
+   ====================== */
 @media (max-width: 974px) {
     .hamburger {
         display: flex;
@@ -159,7 +190,6 @@ ul{
 
     .right-btns {
         display: none;
-        /* Hide desktop buttons */
     }
 
     .nav-links {
@@ -167,14 +197,14 @@ ul{
         flex-direction: column;
         gap: 1rem;
         position: absolute;
-        top: 50px;
+        top: 100%;
         left: 0;
         width: 100%;
-        padding: 1.5rem 0;
+        padding: 16px 18px;
         background: #fff;
         border-bottom: 1px solid #eee;
-        padding-left: 18px;
         text-align: left;
+        box-sizing: border-box;
     }
 
     .nav-links.show {
@@ -194,15 +224,16 @@ ul{
         }
     }
 
-    /* MOBILE DOWNLOAD BUTTONS */
-    .mobile-download {
-        display: flex;
-        gap: 10px !important;
-        flex-direction: row;
-        justify-content: start;
-        align-items: start;
-        padding: 0;
+    .container {
+        padding: 8px 15px;
+        /* tighter padding */
     }
 
+    .mobile-download {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 8px;
+    }
 }
 </style>

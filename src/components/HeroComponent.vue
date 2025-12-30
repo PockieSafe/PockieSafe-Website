@@ -35,6 +35,7 @@ export default {
 .left_container {
     width: 80%;
     margin: 0 auto;
+    max-width: 606px;
 }
 
 .left_writeup {
@@ -45,7 +46,7 @@ export default {
 
 h1 {
     color: #ffffff;
-    font-size: 48px;
+    font-size: 47px;
     font-weight: bold;
     line-height: 56px;
     letter-spacing: 0.2px;
@@ -163,17 +164,20 @@ h2 {
     .mobile_mockup {
         display: block;
     }
+
     .web_mockup {
         display: none;
     }
+
     .hero_container {
         padding: 20% 25px;
     }
-   .button_div {
-    display: flex;
-    width: 100%;
-    gap: 12px;
-    flex-direction: column;
-}
+
+    .button_div {
+        display: flex;
+        width: 100%;
+        gap: 12px;
+        flex-direction: column;
+    }
 }
 </style>
