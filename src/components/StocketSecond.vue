@@ -1,116 +1,149 @@
+<!-- BenefitsSection.vue -->
 <template>
-    <div class="hero_container">
-        <div class="cards">
-            <img src="../assets/Stokvel_1.svg" alt="">
+    <section class="benefits-wrap">
+        <div class="benefits">
+            <article v-for="item in items" :key="item.title" class="benefit-card">
+                <div class="icon">
+                    <img :src="item.icon" :alt="item.title + ' icon'" />
+                </div>
+
+                <h3 class="title">{{ item.title }}</h3>
+                <p class="desc">{{ item.description }}</p>
+
+                <div class="phone">
+                    <img :src="item.image" :alt="item.title" />
+                </div>
+            </article>
         </div>
-        <div class="cards">
-            <img src="../assets/Stokvel_2.svg" alt="">
-        </div>
-        <div class="cards">
-            <img src="../assets/Stokvel_3.svg" alt="">
-        </div>
-    </div>
+    </section>
 </template>
 
-<script>
-// import ContactForm from './ContactForm.vue';
+<script setup>
+import icon1 from "@/assets/EyeWhite.svg";
+import icon2 from "@/assets/tabler_bell-filled.svg";
+import icon3 from "@/assets/streamline-plump_wallet-solid.svg";
 
-export default {
-    data() {
-        return {
-            showForm: false
-        }
+import img1 from "@/assets/Frame1686553415.svg";
+import img2 from "@/assets/Frame1686553418.svg";
+import img3 from "@/assets/Frame1686553419.svg";
+
+const items = [
+    {
+        title: "Transparent Contributions",
+        description:
+            "Track deposits, cycles, and payouts in real time. No hidden records.",
+        image: img1,
+        icon: icon1,
     },
-    methods: {
-        showNewForm() {
-            this.$router.push({ path: '/vendors' })
-        },
-    }
-}
+    {
+        title: "Automated Reminders",
+        description:
+            "Never miss a contribution. Get smart reminders and payment notifications.",
+        image: img2,
+        icon: icon2,
+    },
+    {
+        title: "Digital Wallet Integration",
+        description:
+            "Link your bank or wallet for instant deposits and withdrawal convenience.",
+        image: img3,
+        icon: icon3,
+    },
+];
 </script>
 
 <style scoped>
-h4 {
+.benefits-wrap {
+    width: 100%;
+    padding: 40px 24px;
+    background: #ffffff;
+}
+
+.benefits {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.benefit-card {
+    background: #ff7a00;
+    color: #fff;
+    border-radius: 26px;
+    padding: 28px;
+    padding-right: 170px;
+    min-height: 360px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+}
+
+.icon img {
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+
+.title {
     font-size: 20px;
-    font-weight: 600;
-    color: #12121C;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+
+    white-space: nowrap;
+    /* ✅ ALWAYS one line */
 }
-.cards{
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    justify-content: space-between;
+
+.desc {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 320px;
+}
+
+.phone {
+    position: absolute;
+    right: 12px;
+    bottom: -14px;
+    width: 215px;
+    pointer-events: none;
+}
+
+.phone img {
+    width: 100%;
     height: auto;
-}
-.writeup_top p {
-    font-size: 14px;
-    color: #6F6F7B;
+    display: block;
 }
 
-.writeup_top {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 12px;
-}
-.hero_container {
-    background-image: #ffffff;
-    width: 100%;
-    padding: 0 13%;
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    justify-content: center;
-    /* margin-top: 65px; */
-}
+/* Responsive – image scales, title stays single line */
+@media (max-width: 1024px) {
+    .benefits {
+        grid-template-columns: 1fr;
+    }
 
-.btn_right a {
-    color: #FF7A00;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.2px;
-    font-weight: 500;
+    .benefit-card {
+        padding-right: 150px;
+        min-height: 340px;
+    }
 
-}
-.btn_right {
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: end;
-    color: #FF7A00;
-}
-
-@media screen and (max-width: 2000px) {}
-
-@media screen and (max-width: 1440px) {}
-
-@media screen and (max-width: 1330px) {
-    .hero_container {
-    padding: 0 7%;
-}
-
-}
-
-@media screen and (max-width: 1200px) {
-        .hero_container {
-    padding: 0 15px;
-    flex-wrap: wrap;
-}
-.cards{
-    width: 336px;
-}
-}
-
-@media screen and (max-width: 726px) {
-    .cards{
-        width: 300px;
+    .phone {
+        width: 170px;
     }
 }
-@media screen and (max-width: 726px) {
-       .cards{
-        width: 100%;
+
+@media (max-width: 480px) {
+    .benefit-card {
+        padding-right: 130px;
+    }
+
+    .phone {
+        width: 170px;
     }
 }
 </style>

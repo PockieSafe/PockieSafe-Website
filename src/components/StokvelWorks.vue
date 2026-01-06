@@ -112,10 +112,11 @@ p {
         gap: 40px;
         margin-top: 10%;
     }
+
     .step_container {
         display: flex;
         flex-wrap: wrap;
-    
+
     }
 }
 
@@ -128,7 +129,7 @@ p {
 //         gap: 40px;
 //         margin-top: 10%;
 //     }
-    
+
 // }
 // @media screen and (max-width: 450px) {
 //        .steps {
@@ -151,11 +152,14 @@ p {
         padding: 30px;
         border-radius: 16px;
     }
-    .steps_img {display: none;}
+
+    .steps_img {
+        display: none;
+    }
+
     .step_container {
-    gap: 20px;
+        gap: 20px;
 
+    }
 }
-}
-
 </style>
